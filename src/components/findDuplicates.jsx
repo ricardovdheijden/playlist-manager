@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 
 class FindDuplicates extends Component {
     state = {
-        trackIds: []
+        uniqueTracks: new Map(),
+        duplicateTracks: []
     };
 
     handleChange = event => {
@@ -14,7 +15,18 @@ class FindDuplicates extends Component {
                 return c.substring(c.lastIndexOf('/') + 1)
             });
 
-        this.setState({trackIds: trackIds});
+        let uniqueTracks = new Map();
+        let duplicateTracks = [];
+        trackIds.forEach((c, index) => {
+            if (uniqueTracks.has(c)) {
+                duplicateTracks.push(c);
+            } else {
+                uniqueTracks.set(c, index)
+            }
+        });
+
+        this.setState({uniqueTracks: uniqueTracks});
+        this.setState({duplicateTracks: duplicateTracks});
     };
 
     render() {
