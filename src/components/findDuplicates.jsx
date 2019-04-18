@@ -8,20 +8,20 @@ class FindDuplicates extends Component {
 
     handleChange = event => {
         let trackIds = event.target.value.split('\n')
-            .filter(c => {
-                return c.length > 31 && c.startsWith('https://open.spotify.com/track/')
+            .filter(url => {
+                return url.length > 31 && url.startsWith('https://open.spotify.com/track/')
             })
-            .map(c => {
-                return c.substring(c.lastIndexOf('/') + 1)
+            .map(url => {
+                return url.substring(url.lastIndexOf('/') + 1)
             });
 
         let uniqueTracks = new Map();
         let duplicateTracks = [];
-        trackIds.forEach((c, index) => {
-            if (uniqueTracks.has(c)) {
-                duplicateTracks.push(c);
+        trackIds.forEach((track, index) => {
+            if (uniqueTracks.has(track)) {
+                duplicateTracks.push(track);
             } else {
-                uniqueTracks.set(c, index)
+                uniqueTracks.set(track, index)
             }
         });
 
@@ -33,12 +33,14 @@ class FindDuplicates extends Component {
         return (
             <React.Fragment>
                 <h2>Find Duplicates</h2>
-                <textarea className="span6"
-                          rows="10"
+                <textarea rows="10"
                           cols="70"
                           placeholder={'https://open.spotify.com/track/3hMHG6lx9QHVcfYSUr5PoM\nhttps://open.spotify.com/track/3O9zeBmAi5JRBMSpIQGx2v'}
                           required
                           onChange={this.handleChange}/>
+                <textarea rows="10"
+                          cols="70"
+                          value={this.state.duplicateTracks.join('\n')}/>
             </React.Fragment>
         );
     }
