@@ -7,40 +7,50 @@ class FindDuplicates extends Component {
 
     render() {
         return (
-            <React.Fragment>
-                <h2>Find Duplicates</h2>
-                <h5>Playlist</h5>
-                <textarea rows="10"
-                          cols="70"
-                          placeholder={'https://open.spotify.com/track/3hMHG6lx9QHVcfYSUr5PoM\nhttps://open.spotify.com/track/3O9zeBmAi5JRBMSpIQGx2v'}
-                          required
-                          onChange={this.handleChange}/>
-                { this.state.playlist.length ?
-                    <React.Fragment>
-                        <h5>Duplicates</h5>
-                        <table className="table table-sm">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Track ID</th>
-                                <th scope="col">Duplicates</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            { this.state.playlist.map((track, pos) =>
-                                <tr className={track.duplicates.length ? 'table-secondary':null} key={pos + 1}>
-                                    <th scope="row">{pos + 1}</th>
-                                    <td>
-                                        <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank">{track.trackId}</a>
-                                    </td>
-                                    <td>{track.duplicates.map(tracknumber => tracknumber + 1).join(', ')}</td>
+            <div className="container">
+                <div className="row mt-3">
+                    <div className="col-12">
+                        <h2>Find Duplicates</h2>
+                    </div>
+                </div>
+                <div className="row mt-3">
+                    <div className="col-12">
+                        <h5>Playlist</h5>
+                        <textarea rows="10"
+                                  className="col-12"
+                                  placeholder={'https://open.spotify.com/track/3hMHG6lx9QHVcfYSUr5PoM\nhttps://open.spotify.com/track/3O9zeBmAi5JRBMSpIQGx2v'}
+                                  required
+                                  onChange={this.handleChange}/>
+                    </div>
+                </div>
+                <div className="row mt-3">
+                    { this.state.playlist.length ?
+                        <div className="col-12">
+                            <h5>Duplicates</h5>
+                            <table className="table table-sm">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Track ID</th>
+                                    <th scope="col">Duplicates</th>
                                 </tr>
-                            )}
-                            </tbody>
-                        </table>
-                    </React.Fragment> : null
-                }
-            </React.Fragment>
+                                </thead>
+                                <tbody>
+                                { this.state.playlist.map((track, pos) =>
+                                    <tr className={track.duplicates.length ? 'table-secondary':null} key={pos + 1}>
+                                        <th scope="row">{pos + 1}</th>
+                                        <td>
+                                            <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank">{track.trackId}</a>
+                                        </td>
+                                        <td>{track.duplicates.map(tracknumber => tracknumber + 1).join(', ')}</td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        </div> : null
+                    }
+                </div>
+            </div>
         );
     }
 
