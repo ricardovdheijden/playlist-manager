@@ -9,15 +9,15 @@ class FindDuplicates extends Component {
         return (
             <div className="container">
                 <div className="row mt-3">
-                    <div className="col-12">
+                    <div className="col">
                         <h2>Find Duplicates</h2>
                     </div>
                 </div>
                 <div className="row mt-3">
-                    <div className="col-12">
+                    <div className="col">
                         <h5>Playlist</h5>
                         <textarea rows="10"
-                                  className="col-12"
+                                  className="col"
                                   placeholder={'https://open.spotify.com/track/3hMHG6lx9QHVcfYSUr5PoM\nhttps://open.spotify.com/track/3O9zeBmAi5JRBMSpIQGx2v'}
                                   required
                                   onChange={this.handleChange}/>
@@ -25,7 +25,7 @@ class FindDuplicates extends Component {
                 </div>
                 <div className="row mt-3">
                     { this.state.playlist.length ?
-                        <div className="col-12">
+                        <div className="col">
                             <h5>Duplicates</h5>
                             <table className="table table-sm">
                                 <thead>
