@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
 import FindDuplicates from './components/findDuplicates';
 import NavBar from './components/navbar';
 
@@ -7,7 +8,12 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar/>
-        <FindDuplicates/>
+        <HashRouter>
+            <Switch>
+                <Redirect path="/" to="/find-duplicates-by-url" exact />
+                <Route path="/find-duplicates-by-url" component={FindDuplicates} />
+            </Switch>
+        </HashRouter>
       </React.Fragment>
     );
   }
