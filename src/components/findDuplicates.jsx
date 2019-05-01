@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PlaylistInput from './playlistInput';
 
 class FindDuplicates extends Component {
     state = {
@@ -13,16 +14,7 @@ class FindDuplicates extends Component {
                         <h2>Find Duplicates</h2>
                     </div>
                 </div>
-                <div className="row mt-3">
-                    <div className="col">
-                        <h5>Playlist</h5>
-                        <textarea rows="10"
-                                  className="col"
-                                  placeholder={'https://open.spotify.com/track/3hMHG6lx9QHVcfYSUr5PoM\nhttps://open.spotify.com/track/3O9zeBmAi5JRBMSpIQGx2v'}
-                                  required
-                                  onChange={this.handleChange}/>
-                    </div>
-                </div>
+                <PlaylistInput onChange={this.handleChange} />
                 <div className="row mt-3">
                     { this.state.playlist.length ?
                         <div className="col">
