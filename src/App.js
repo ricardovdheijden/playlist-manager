@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
-import FindDuplicates from './components/findDuplicates';
+import FindDuplicates from './routes/findDuplicates';
 import NavBar from './components/navbar';
 
 class App extends Component {
