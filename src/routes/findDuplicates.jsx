@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PlaylistInput from '../components/playlistInput';
 import DuplicateUrlOverview from '../components/duplicateUrlOverview';
+import SpotifyService from '../services/spotifyService';
 
 class FindDuplicates extends Component {
     state = {
@@ -22,52 +23,9 @@ class FindDuplicates extends Component {
     }
 
     handleChange = event => {
-        let trackIds = event.target.value.split('\n')
-            .filter(url => {
-                return url.length > 31 && url.startsWith('https://open.spotify.com/track/')
-            })
-            .map(url => {
-                return url.substring(url.lastIndexOf('/') + 1)
-            });
-        this.setState({playlist: this.createPlaylistFromTrackIds(trackIds)});
+        let trackIdList = SpotifyService.createTrackIdList(event.target.value);
+        this.setState({playlist: SpotifyService.createPlaylistWithMarkedDuplicates(trackIdList)});
     };
-
-    createPlaylistFromTrackIds(trackIds) {
-        let uniqueTracks = new Map();
-        let duplicateTracks = new Map();
-        trackIds.forEach((track, index) => {
-            if (uniqueTracks.has(track)) {
-                if (duplicateTracks.has(track)) {
-                    let indexes = duplicateTracks.get(track);
-                    indexes.push(index);
-                    duplicateTracks.set(track, indexes);
-                } else {
-                    let indexes = [];
-                    indexes.push(uniqueTracks.get(track));
-                    indexes.push(index);
-                    duplicateTracks.set(track, indexes);
-                }
-            } else {
-                uniqueTracks.set(track, index)
-            }
-        });
-
-        let playlist = [];
-        trackIds.forEach(trackId => {
-            let duplicates = [];
-            if (duplicateTracks.has(trackId)) {
-                duplicates = duplicateTracks.get(trackId);
-            }
-            let track = {
-                trackId: trackId,
-                duplicates: duplicates
-            };
-            playlist.push(track);
-        });
-
-        return playlist;
-    }
-
 }
 
 export default FindDuplicates;
