@@ -8,7 +8,7 @@ class DuplicateUrlOverview extends Component {
             <div className="row mt-3">
                 { playlist.length ?
                     <div className="col">
-                        <h5>Duplicates</h5>
+                        <h5>Found duplicates</h5>
                         <table className="table table-sm">
                             <thead>
                             <tr>
