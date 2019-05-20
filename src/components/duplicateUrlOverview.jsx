@@ -6,9 +6,9 @@ class DuplicateUrlOverview extends Component {
 
         return (
             <div className="row mt-3">
-                { playlist.length ?
+                { playlist.tracks ?
                     <div className="col">
-                        <h5>Found duplicates</h5>
+                        <h5>Found duplicates: {playlist.numberOfDuplicates}</h5>
                         <table className="table table-sm">
                             <thead>
                             <tr>
@@ -18,13 +18,13 @@ class DuplicateUrlOverview extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                            { playlist.map((track, pos) =>
+                            { playlist.tracks.map((track, pos) =>
                                 <tr className={track.duplicates.length ? 'table-secondary':null} key={pos + 1}>
                                     <th scope="row">{pos + 1}</th>
                                     <td>
                                         <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank">{track.trackId}</a>
                                     </td>
-                                    <td>{track.duplicates.map(tracknumber => tracknumber + 1).join(', ')}</td>
+                                    <td>{track.duplicates.map(trackNumber => trackNumber + 1).join(', ')}</td>
                                 </tr>
                             )}
                             </tbody>

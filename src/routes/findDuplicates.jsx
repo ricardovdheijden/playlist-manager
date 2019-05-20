@@ -5,7 +5,7 @@ import SpotifyService from '../services/spotifyService';
 
 class FindDuplicates extends Component {
     state = {
-        playlist: []
+        playlist: {}
     };
 
     render() {

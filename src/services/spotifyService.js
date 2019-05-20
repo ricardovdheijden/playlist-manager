@@ -20,8 +20,10 @@ class SpotifyService {
     static createPlaylistWithMarkedDuplicates(trackIds) {
         let uniqueTracks = new Map();
         let duplicateTracks = new Map();
+        let numberOfDuplicates = 0;
         trackIds.forEach((track, index) => {
             if (uniqueTracks.has(track)) {
+                numberOfDuplicates++;
                 if (duplicateTracks.has(track)) {
                     let indexes = duplicateTracks.get(track);
                     indexes.push(index);
@@ -37,7 +39,9 @@ class SpotifyService {
             }
         });
 
-        let playlist = [];
+        let playlist = {};
+        playlist.numberOfDuplicates = numberOfDuplicates;
+        let tracks = [];
         trackIds.forEach(trackId => {
             let duplicates = [];
             if (duplicateTracks.has(trackId)) {
@@ -47,9 +51,9 @@ class SpotifyService {
                 trackId: trackId,
                 duplicates: duplicates
             };
-            playlist.push(track);
+            tracks.push(track);
         });
-
+        playlist.tracks = tracks;
         return playlist;
     }
 
