@@ -14,17 +14,17 @@ class DuplicateUrlOverview extends Component {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Track ID</th>
-                                <th scope="col">Duplicates</th>
+                                <th scope="col">Duplicate of</th>
                             </tr>
                             </thead>
                             <tbody>
                             { playlist.tracks.map((track, pos) =>
-                                <tr className={track.duplicates.length ? 'table-secondary':null} key={pos + 1}>
+                                <tr className={track.duplicateOf ? 'table-secondary':null} key={pos + 1}>
                                     <th scope="row">{pos + 1}</th>
                                     <td>
                                         <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank">{track.trackId}</a>
                                     </td>
-                                    <td>{track.duplicates.map(trackNumber => trackNumber + 1).join(', ')}</td>
+                                    <td>{track.duplicateOf ? track.duplicateOf + 1 : null}</td>
                                 </tr>
                             )}
                             </tbody>

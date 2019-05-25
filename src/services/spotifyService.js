@@ -19,41 +19,26 @@ class SpotifyService {
 
     static createPlaylistWithMarkedDuplicates(trackIds) {
         let uniqueTracks = new Map();
-        let duplicateTracks = new Map();
-        let numberOfDuplicates = 0;
-        trackIds.forEach((track, index) => {
-            if (uniqueTracks.has(track)) {
-                numberOfDuplicates++;
-                if (duplicateTracks.has(track)) {
-                    let indexes = duplicateTracks.get(track);
-                    indexes.push(index);
-                    duplicateTracks.set(track, indexes);
-                } else {
-                    let indexes = [];
-                    indexes.push(uniqueTracks.get(track));
-                    indexes.push(index);
-                    duplicateTracks.set(track, indexes);
-                }
+        let playlist = {
+            numberOfDuplicates: 0,
+            tracks: []
+        };
+        trackIds.forEach((trackId, index) => {
+            if (uniqueTracks.has(trackId)) {
+                playlist.numberOfDuplicates++;
+                let track = {
+                    trackId: trackId,
+                    duplicateOf: uniqueTracks.get(trackId)
+                };
+                playlist.tracks.push(track)
             } else {
-                uniqueTracks.set(track, index)
+                uniqueTracks.set(trackId, index);
+                let track = {
+                    trackId: trackId
+                };
+                playlist.tracks.push(track);
             }
         });
-
-        let playlist = {};
-        playlist.numberOfDuplicates = numberOfDuplicates;
-        let tracks = [];
-        trackIds.forEach(trackId => {
-            let duplicates = [];
-            if (duplicateTracks.has(trackId)) {
-                duplicates = duplicateTracks.get(trackId);
-            }
-            let track = {
-                trackId: trackId,
-                duplicates: duplicates
-            };
-            tracks.push(track);
-        });
-        playlist.tracks = tracks;
         return playlist;
     }
 
