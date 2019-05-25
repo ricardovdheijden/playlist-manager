@@ -10,7 +10,10 @@ const NavBar = () => {
                 <div className="collapse navbar-collapse">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <a href="#/find-duplicates-by-url" className="nav-link">URLs</a>
+                            <a href="#/find-duplicates" className="nav-link">Find Duplicates</a>
+                        </li>
+                        <li className="nav-item">
+                            <a href="#/deduplicate" className="nav-link">Deduplicate</a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
-import FindDuplicates from './components/findDuplicates';
+import Deduplicate from "./routes/deduplicate";
+import FindDuplicates from './routes/findDuplicates';
 import NavBar from './components/navbar';
 
 class App extends Component {
@@ -10,8 +11,9 @@ class App extends Component {
         <NavBar/>
         <HashRouter>
             <Switch>
-                <Redirect path="/" to="/find-duplicates-by-url" exact />
-                <Route path="/find-duplicates-by-url" component={FindDuplicates} />
+                <Redirect path="/" to="/find-duplicates" exact />
+                <Route path="/find-duplicates" component={FindDuplicates} />
+                <Route path="/deduplicate" component={Deduplicate} />
             </Switch>
         </HashRouter>
       </React.Fragment>
