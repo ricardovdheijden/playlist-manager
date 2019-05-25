@@ -6,7 +6,7 @@ class DuplicateUrlOverview extends Component {
 
         return (
             <div className="row mt-3">
-                { playlist.tracks ?
+                { playlist.tracks && playlist.tracks.length > 0 ?
                     <div className="col">
                         <h5>Found duplicates: {playlist.numberOfDuplicates}</h5>
                         <table className="table table-sm">
