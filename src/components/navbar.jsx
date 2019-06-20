@@ -15,6 +15,9 @@ const NavBar = () => {
                         <li className="nav-item">
                             <a href="#/deduplicate" className="nav-link">Deduplicate</a>
                         </li>
+                        <li className="nav-item">
+                            <a href="#/spotify-api" className="nav-link">Spotify API</a>
+                        </li>
                     </ul>
                 </div>
             </div>

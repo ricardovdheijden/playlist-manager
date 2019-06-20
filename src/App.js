@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, HashRouter, Redirect, Switch } from 'react-router-dom';
 import Deduplicate from "./routes/deduplicate";
 import FindDuplicates from './routes/findDuplicates';
+import SpotifyApi from './routes/spotifyApi';
 import NavBar from './components/navbar';
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
                 <Redirect path="/" to="/find-duplicates" exact />
                 <Route path="/find-duplicates" component={FindDuplicates} />
                 <Route path="/deduplicate" component={Deduplicate} />
+                <Route path="/spotify-api" component={SpotifyApi} />
             </Switch>
         </HashRouter>
       </React.Fragment>
