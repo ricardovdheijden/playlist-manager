@@ -2,12 +2,26 @@ import React, {Component} from 'react';
 
 class SpotifyApi extends Component {
     state = {
-        playlist: []
+        healthMessage: []
     };
 
+    componentDidMount() {
+        fetch("http://localhost:8080/health")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        healthMessage: result.message
+                    });
+                }
+            )
+
+    }
+
     render() {
+        const { healthMessage } = this.state;
         return (
-            <div className="container">SpotifyApi Component</div>
+            <div className="container">{healthMessage}</div>
         );
     }
 }
