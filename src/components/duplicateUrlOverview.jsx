@@ -22,7 +22,7 @@ class DuplicateUrlOverview extends Component {
                                 <tr className={track.duplicateOf ? 'table-secondary':null} key={pos + 1}>
                                     <th scope="row">{pos + 1}</th>
                                     <td>
-                                        <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank">{track.trackId}</a>
+                                        <a href={'https://open.spotify.com/track/' + track.trackId} target="_blank" rel="noopener noreferrer">{track.trackId}</a>
                                     </td>
                                     <td>{track.duplicateOf ? track.duplicateOf + 1 : null}</td>
                                 </tr>
